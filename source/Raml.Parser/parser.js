@@ -9,6 +9,11 @@ if (process.argv.length <= 2) {
     var filepath = process.argv[2];
 
     var fs = require('fs');
+    var amf = require('amf');
+    amf.plugins.document.WebApi.register();
+    amf.plugins.document.Vocabularies.register();
+    amf.plugins.features.AMFValidation.register();
+
     try {
         stats = fs.lstatSync(filepath);
 
@@ -16,28 +21,14 @@ if (process.argv.length <= 2) {
 
 
             var path = require('path');
-            var raml1Parser = require('raml-1-0-parser');
+            amf.Core.init().then(function () {
+              
+              console.log('Inside init');
+              var parser = amf.Core.parser("RAML 1.0", "application/yaml");
+              console.log('Parser created');
+              parser.parseFile("file://" + filepath, { success: success, error: error });
 
-            raml1Parser.loadApi(filepath)
-               .then(function (api) {
-                   
-                   console.log('End a');
-
-                   api.errors().forEach(function (x) {
-                       console.log(JSON.stringify({
-                           code: x.code,
-                           message: x.message,
-                           path: x.path,
-                           start: x.start,
-                           end: x.end,
-                           isWarning: x.isWarning
-                       }, null, 2));
-                   });
-
-                   console.log(JSON.stringify(api.toJSON(), null, 2));
-               });
-               
-               console.log('End s');
+            });    
 
         } else {
             
@@ -49,5 +40,14 @@ if (process.argv.length <= 2) {
 
         console.log('Error: ' + e);
 
+    }
+
+    
+    function success(doc) {
+        console.log('parser has respond with: ' + doc)
+    }
+
+    function error(exception) {
+        console.log("Error", exception)
     }
 }
