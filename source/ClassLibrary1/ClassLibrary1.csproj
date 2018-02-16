@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLibrary1</RootNamespace>
     <AssemblyName>ClassLibrary1</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,6 +44,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Documentation.cs" />
+    <Compile Include="Model\EndPoint.cs" />
+    <Compile Include="Model\Example.cs" />
+    <Compile Include="Model\License.cs" />
+    <Compile Include="Model\Operation.cs" />
+    <Compile Include="Model\Organization.cs" />
+    <Compile Include="Model\Parameter.cs" />
+    <Compile Include="Model\ParametrizedSecurityScheme.cs" />
+    <Compile Include="Model\Payload.cs" />
+    <Compile Include="Model\Request.cs" />
+    <Compile Include="Model\Response.cs" />
+    <Compile Include="Model\Scope.cs" />
+    <Compile Include="Model\SecurityScheme.cs" />
+    <Compile Include="Model\Settings.cs" />
+    <Compile Include="Model\Shape.cs" />
+    <Compile Include="Model\WebApi.cs" />
     <Compile Include="RamlParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -86,6 +103,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Builders\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
