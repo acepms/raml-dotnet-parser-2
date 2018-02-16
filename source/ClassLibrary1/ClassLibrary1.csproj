@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mappers\EndPointMapper.cs" />
+    <Compile Include="Mappers\StringEnumerationMapper.cs" />
     <Compile Include="Mappers\WebApiMapper.cs" />
     <Compile Include="Model\Documentation.cs" />
     <Compile Include="Model\EndPoint.cs" />
