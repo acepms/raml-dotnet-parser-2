@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mappers\WebApiMapper.cs" />
     <Compile Include="Model\Documentation.cs" />
     <Compile Include="Model\EndPoint.cs" />
     <Compile Include="Model\Example.cs" />
@@ -104,8 +105,6 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Builders\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
