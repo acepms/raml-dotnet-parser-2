@@ -1,18 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using ClassLibrary1.Model;
+using System.Linq;
 
 namespace ClassLibrary1.Mappers
 {
-    internal class EndPointMapper
+    internal static class EndPointMapper
     {
-        public EndPointMapper()
+        internal static IEnumerable<EndPoint> Map(object[] endPoints)
         {
+            if(endPoints == null)
+                return new List<EndPoint>();
+
+            return endPoints.Select(e => Map(e as IDictionary<string, object>)).ToArray();
         }
 
-        internal IEnumerable<EndPoint> Map(object[] endPoints)
+        private static EndPoint Map(IDictionary<string, object> endpoint)
         {
-            return new List<EndPoint>();
+            if (endpoint == null)
+                return null;
+
+            return new EndPoint(endpoint["name"] as string, endpoint["description"] as string, endpoint["path"] as string, 
+                OperationMapper.Map(endpoint["operations"] as object[]), ParameterMapper.Map(endpoint["parameters"] as object[]), 
+                ParametrizedSecuritySchemeMapper.Map(endpoint["security"] as object[]));
         }
     }
 }

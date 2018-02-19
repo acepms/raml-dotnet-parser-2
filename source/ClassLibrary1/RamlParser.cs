@@ -10,9 +10,9 @@ namespace ClassLibrary1
 {
     public class RamlParser
     {
-        public WebApi Load(string filePath)
+        public async Task<WebApi> Load(string filePath)
         {
-            var rawresult = GetDynamicStructureAsync(filePath).Result;
+            var rawresult = await GetDynamicStructureAsync(filePath).ConfigureAwait(false);
             var ret = rawresult as IDictionary<string, object>;
             var error = ret["error"];
             if (error != null)

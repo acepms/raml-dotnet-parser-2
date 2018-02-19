@@ -4,7 +4,9 @@ namespace ClassLibrary1.Model
 {
     public class Operation
     {
-        public Operation(string method, string name, string description, bool deprecated, string summary, Documentation documentation, IEnumerable<string> schemes, IEnumerable<string> accepts, IEnumerable<string> contentType, Request request, IEnumerable<Response> responses, IEnumerable<ParametrizedSecurityScheme> security)
+        public Operation(string method, string name, string description, bool deprecated, string summary, Documentation documentation, 
+            IEnumerable<string> schemes, IEnumerable<string> accepts, IEnumerable<string> contentType, Request request, IEnumerable<Response> responses, 
+            IEnumerable<SecurityScheme> security)
         {
             Method = method;
             Name = name;
@@ -31,6 +33,6 @@ namespace ClassLibrary1.Model
         public IEnumerable<string> ContentType { get; }
         public Request Request { get; }
         public IEnumerable<Response> Responses { get; }
-        public IEnumerable<ParametrizedSecurityScheme> Security { get; }
+        public IEnumerable<SecurityScheme> Security { get; }
     }
 }
