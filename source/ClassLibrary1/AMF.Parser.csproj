@@ -51,7 +51,15 @@
     <Compile Include="Mappers\OperationMapper.cs" />
     <Compile Include="Mappers\OrganizationMapper.cs" />
     <Compile Include="Mappers\ParameterMapper.cs" />
-    <Compile Include="Mappers\ParameterMapperUtils.cs" />
+    <Compile Include="Mappers\PropertyDependenciesMapper.cs" />
+    <Compile Include="Mappers\PropertyShapeMapper.cs" />
+    <Compile Include="Model\ArrayShape.cs" />
+    <Compile Include="Model\FileShape.cs" />
+    <Compile Include="Model\NodeShape.cs" />
+    <Compile Include="Model\ScalarShape.cs" />
+    <Compile Include="Model\SchemaShape.cs" />
+    <Compile Include="Model\UnionShape.cs" />
+    <Compile Include="Utils\ParameterMapperUtils.cs" />
     <Compile Include="Mappers\ParametrizedSecuritySchemeMapper.cs" />
     <Compile Include="Mappers\PayloadMapper.cs" />
     <Compile Include="Mappers\RequestMapper.cs" />
@@ -62,6 +70,8 @@
     <Compile Include="Mappers\ShapeMapper.cs" />
     <Compile Include="Mappers\StringEnumerationMapper.cs" />
     <Compile Include="Mappers\WebApiMapper.cs" />
+    <Compile Include="Mappers\XmlSerializerMapper.cs" />
+    <Compile Include="Model\AnyShape.cs" />
     <Compile Include="Model\Documentation.cs" />
     <Compile Include="Model\EndPoint.cs" />
     <Compile Include="Model\Example.cs" />
@@ -71,6 +81,8 @@
     <Compile Include="Model\Parameter.cs" />
     <Compile Include="Model\ParametrizedSecurityScheme.cs" />
     <Compile Include="Model\Payload.cs" />
+    <Compile Include="Model\PropertyDependency.cs" />
+    <Compile Include="Model\PropertyShape.cs" />
     <Compile Include="Model\Request.cs" />
     <Compile Include="Model\Response.cs" />
     <Compile Include="Model\Scope.cs" />
@@ -78,6 +90,7 @@
     <Compile Include="Model\Settings.cs" />
     <Compile Include="Model\Shape.cs" />
     <Compile Include="Model\WebApi.cs" />
+    <Compile Include="Model\XmlSerialization.cs" />
     <Compile Include="RamlParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

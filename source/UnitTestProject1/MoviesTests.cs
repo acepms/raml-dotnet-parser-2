@@ -75,7 +75,27 @@ namespace UnitTestProject1
             Assert.AreEqual("200", resp.StatusCode);
             Assert.AreEqual(1, resp.Payloads.Count());
             Assert.AreEqual("application/json", resp.Payloads.First().MediaType);
+            Assert.IsInstanceOfType(resp.Payloads.First().Schema, typeof(ArrayShape));
+            var array = (ArrayShape)resp.Payloads.First().Schema;
+            Assert.IsInstanceOfType(array.Items, typeof(NodeShape));
+            var node = (NodeShape)array.Items;
+            Assert.AreEqual(9, node.Properties.Count());
+            
+            Assert.IsTrue(node.Properties.First().Path.EndsWith("#id"));
+            Assert.IsInstanceOfType(node.Properties.First().Range, typeof(ScalarShape));
+            var id = (ScalarShape)node.Properties.First().Range;
+            Assert.IsTrue(id.DataType.EndsWith("#integer"));
+            Assert.AreEqual("id", id.Name);
 
+            var name = (ScalarShape)node.Properties.First(p => p.Path.EndsWith("#name")).Range;
+            Assert.IsTrue(name.DataType.EndsWith("#string"));
+            Assert.AreEqual(255, name.MaxLength);
+            Assert.AreEqual("name", name.Name);
+
+            var duration = (ScalarShape)node.Properties.First(p => p.Path.EndsWith("#duration")).Range;
+            Assert.IsTrue(duration.DataType.EndsWith("#float"));
+            Assert.AreEqual("1", duration.Minimum);
+            Assert.AreEqual("duration", duration.Name);
         }
     }
 }

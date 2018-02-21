@@ -4,7 +4,8 @@ namespace ClassLibrary1.Model
 {
     public class SecurityScheme
     {
-        public SecurityScheme(string name, string type, string displayName, string description, IEnumerable<Parameter> headers, IEnumerable<Parameter> queryParameters, IEnumerable<Response> responses, Settings settings, Shape queryString)
+        public SecurityScheme(string name, string type, string displayName, string description, IEnumerable<Parameter> headers, 
+            IEnumerable<Parameter> queryParameters, IEnumerable<Response> responses, Settings settings, Shape queryString)
         {
             Name = name;
             Type = type;

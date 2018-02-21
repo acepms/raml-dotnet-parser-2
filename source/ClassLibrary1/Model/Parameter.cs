@@ -2,7 +2,7 @@
 {
     public class Parameter
     {
-        public Parameter(string name, string description, bool required, string binding, Shape schema)
+        public Parameter(string name, string description, bool required, string binding, SchemaShape schema)
         {
             Name = name;
             Description = description;
@@ -15,6 +15,6 @@
         public string Description { get; }
         public bool Required { get; }
         public string Binding { get; }
-        public Shape Schema { get; }
+        public SchemaShape Schema { get; }
     }
 }

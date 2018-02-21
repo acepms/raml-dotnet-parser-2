@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using ClassLibrary1.Model;
+using ClassLibrary1.Utils;
 
 namespace ClassLibrary1.Mappers
 {
