@@ -59,6 +59,7 @@
     <Compile Include="Model\ScalarShape.cs" />
     <Compile Include="Model\SchemaShape.cs" />
     <Compile Include="Model\UnionShape.cs" />
+    <Compile Include="SpecificationType.cs" />
     <Compile Include="Utils\ParameterMapperUtils.cs" />
     <Compile Include="Mappers\ParametrizedSecuritySchemeMapper.cs" />
     <Compile Include="Mappers\PayloadMapper.cs" />

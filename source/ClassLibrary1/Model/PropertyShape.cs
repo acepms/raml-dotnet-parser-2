@@ -14,5 +14,6 @@
         public Shape Range { get; }
         public int MinCount { get; }
         public int MaxCount { get; }
+        public bool Required { get { return MinCount > 0; } }
     }
 }

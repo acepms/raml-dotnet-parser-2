@@ -14,48 +14,48 @@ namespace UnitTestProject1
         public void Initialize()
         {
             var parser = new RamlParser();
-            model = parser.Load("file://./specs/movies-v1.raml").Result;
+            model = parser.Load("./specs/movies-v1.raml").Result;
         }
 
         [TestMethod]
-        public void Movies_Endpoints_should_be_9()
+        public void Endpoints_should_be_9()
         {
             Assert.AreEqual(9, model.EndPoints.Count());
         }
 
         [TestMethod]
-        public void Movies_schemes_should_be_http()
+        public void Schemes_should_be_http()
         {
             Assert.AreEqual(1, model.Schemes.Count());
             Assert.AreEqual("HTTP", model.Schemes.First());
         }
 
         [TestMethod]
-        public void Movies_version_should_be_1()
+        public void Version_should_be_1()
         {
             Assert.AreEqual("1.0", model.Version);
         }
 
         [TestMethod]
-        public void Movies_basepath_should_be_api()
+        public void Basepath_should_be_api()
         {
             Assert.AreEqual("/api", model.BasePath);
         }
 
         [TestMethod]
-        public void Movies_host_should_be_movies_com()
+        public void Host_should_be_movies_com()
         {
             Assert.AreEqual("movies.com", model.Host);
         }
 
         [TestMethod]
-        public void Movies_name_should_be_movies_v_1()
+        public void Name_should_be_movies_v_1()
         {
             Assert.AreEqual("Movies v 1", model.Name);
         }
 
         [TestMethod]
-        public void Movies_Post_Operation_Security()
+        public void Post_Operation_Security()
         {
             Assert.AreEqual(1, model.EndPoints.First(e => e.Path == "/movies").Operations.First(o => o.Method == "post").Security.Count());
             Assert.AreEqual("OAuth 2.0", model.EndPoints.First(e => e.Path == "/movies").Operations.First(o => o.Method == "post").Security.First().Type);
@@ -69,7 +69,7 @@ namespace UnitTestProject1
         }
 
         [TestMethod]
-        public void Movies_get_response()
+        public void Get_response()
         {
             var resp = model.EndPoints.First(e => e.Path == "/movies").Operations.First(o => o.Method == "get").Responses.First();
             Assert.AreEqual("200", resp.StatusCode);
@@ -80,22 +80,53 @@ namespace UnitTestProject1
             Assert.IsInstanceOfType(array.Items, typeof(NodeShape));
             var node = (NodeShape)array.Items;
             Assert.AreEqual(9, node.Properties.Count());
-            
-            Assert.IsTrue(node.Properties.First().Path.EndsWith("#id"));
-            Assert.IsInstanceOfType(node.Properties.First().Range, typeof(ScalarShape));
-            var id = (ScalarShape)node.Properties.First().Range;
+
+            PropertiesAsserts(node);
+        }
+
+        [TestMethod]
+        public void Post_request()
+        {
+            var request = model.EndPoints.First(e => e.Path == "/movies").Operations.First(o => o.Method == "post").Request;
+            Assert.AreEqual(1, request.Payloads.Count());
+            Assert.AreEqual("application/json", request.Payloads.First().MediaType);
+            Assert.AreEqual("Movie", request.Payloads.First().Schema.Name);
+            Assert.IsInstanceOfType(request.Payloads.First().Schema, typeof(NodeShape));
+            var node = (NodeShape)request.Payloads.First().Schema;
+            Assert.AreEqual(9, node.Properties.Count());
+
+            PropertiesAsserts(node);
+        }
+
+        private static void PropertiesAsserts(NodeShape node)
+        {
+            var idProp = node.Properties.First(p => p.Path.EndsWith("#id"));
+            Assert.IsInstanceOfType(idProp.Range, typeof(ScalarShape));
+            Assert.IsTrue(idProp.Required);
+            var id = (ScalarShape)idProp.Range;
             Assert.IsTrue(id.DataType.EndsWith("#integer"));
             Assert.AreEqual("id", id.Name);
 
-            var name = (ScalarShape)node.Properties.First(p => p.Path.EndsWith("#name")).Range;
+            var nameProp = node.Properties.First(p => p.Path.EndsWith("#name"));
+            Assert.IsTrue(nameProp.Required);
+            var name = (ScalarShape)nameProp.Range;
             Assert.IsTrue(name.DataType.EndsWith("#string"));
             Assert.AreEqual(255, name.MaxLength);
             Assert.AreEqual("name", name.Name);
 
-            var duration = (ScalarShape)node.Properties.First(p => p.Path.EndsWith("#duration")).Range;
+            var durationProp = node.Properties.First(p => p.Path.EndsWith("#duration"));
+            Assert.IsFalse(durationProp.Required);
+            var duration = (ScalarShape)durationProp.Range;
             Assert.IsTrue(duration.DataType.EndsWith("#float"));
             Assert.AreEqual("1", duration.Minimum);
             Assert.AreEqual("duration", duration.Name);
+
+            var storylineProp = node.Properties.First(p => p.Path.EndsWith("#storyline?"));
+            Assert.IsFalse(storylineProp.Required);
+            Assert.AreEqual("storyline?", storylineProp.Range.Name);
+
+            Assert.AreEqual(1, node.Examples.Count());
+            Assert.IsTrue(node.Examples.First().Value.Length > 0);
         }
     }
 }
