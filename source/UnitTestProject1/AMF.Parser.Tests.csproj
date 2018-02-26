@@ -49,6 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PetStoreJsonTests.cs" />
     <Compile Include="GeneralTests.cs" />
     <Compile Include="ApiWithExamplesTests.cs" />
     <Compile Include="ChinookTests.cs" />

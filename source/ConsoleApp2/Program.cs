@@ -1,9 +1,6 @@
 ﻿using ClassLibrary1;
 using ClassLibrary1.Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using UnitTestProject1;
 
@@ -25,7 +22,8 @@ namespace ConsoleApp2
                 //RunGeneralTests().Wait();
                 //RunChinookTests();
                 //RunMoviesTests();
-                RunApiWithExamplesTests();
+                //RunApiWithExamplesTests();
+                RunPestoreJsonTests();
                 Console.WriteLine("Succeeded");
             }
             catch (Exception ex)
@@ -35,6 +33,17 @@ namespace ConsoleApp2
                 if(ex.InnerException != null)
                     Console.WriteLine(ex.InnerException.Message);
             }
+        }
+
+        private static void RunPestoreJsonTests()
+        {
+            var tests = new PetStoreJsonTests();
+            tests.Initialize();
+            tests.Name_check();
+            tests.Version_check();
+            tests.Endpoints_count();
+            tests.Get_pets_operation();
+            tests.Get_pets_id_operation();
         }
 
         private static async Task RunGeneralTests()
@@ -51,35 +60,35 @@ namespace ConsoleApp2
 
         private static void RunApiWithExamplesTests()
         {
-            var apiWithExamplesTests = new ApiWithExamplesTests();
-            apiWithExamplesTests.Initialize();
-            apiWithExamplesTests.Name_check();
-            apiWithExamplesTests.Version_check();
-            apiWithExamplesTests.Endpoints_count();
-            apiWithExamplesTests.Get_root_response();
+            var tests = new ApiWithExamplesTests();
+            tests.Initialize();
+            tests.Name_check();
+            tests.Version_check();
+            tests.Endpoints_count();
+            tests.Get_root_response();
         }
 
         private static void RunChinookTests()
         {
-            var chinookTests = new ChinookTests();
-            chinookTests.Initialize();
-            chinookTests.Name_should_be_chinook_raml_1_api();
-            chinookTests.Endpoints_should_be_10();
-            chinookTests.Get_customers_response();
-            chinookTests.Get_albums_response();
+            var tests = new ChinookTests();
+            tests.Initialize();
+            tests.Name_should_be_chinook_raml_1_api();
+            tests.Endpoints_should_be_10();
+            tests.Get_customers_response();
+            tests.Get_albums_response();
         }
 
         private static void RunMoviesTests()
         {
-            var moviesTests = new MoviesTests();
-            moviesTests.Initialize();
-            moviesTests.Endpoints_should_be_9();
-            moviesTests.Post_Operation_Security();
-            moviesTests.Schemes_should_be_http();
-            moviesTests.Basepath_should_be_api();
-            moviesTests.Version_should_be_1();
-            moviesTests.Get_response();
-            moviesTests.Post_request();
+            var tests = new MoviesTests();
+            tests.Initialize();
+            tests.Endpoints_should_be_9();
+            tests.Post_Operation_Security();
+            tests.Schemes_should_be_http();
+            tests.Basepath_should_be_api();
+            tests.Version_should_be_1();
+            tests.Get_response();
+            tests.Post_request();
         }
 
         private async static Task<WebApi> Test()
