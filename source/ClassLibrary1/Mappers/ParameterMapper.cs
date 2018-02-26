@@ -22,7 +22,7 @@ namespace ClassLibrary1.Mappers
 
             var required = doc["required"] != null ? Convert.ToBoolean(doc["required"]) : false;
             return new Parameter(doc["name"] as string, doc["description"] as string, required, doc["binding"] as string, 
-                ShapeMapper.MapSchema(doc["schema"] as IDictionary<string, object>));
+                ShapeMapper.Map(doc["schema"] as IDictionary<string, object>));
         }
     }
 }

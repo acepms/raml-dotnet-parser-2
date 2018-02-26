@@ -8,7 +8,7 @@ namespace ClassLibrary1.Mappers
 {
     internal class ShapeMapper
     {
-        internal static SchemaShape MapSchema(IDictionary<string, object> schema)
+        private static SchemaShape MapSchema(IDictionary<string, object> schema)
         {
             if (schema == null)
                 return null;
@@ -80,6 +80,9 @@ namespace ClassLibrary1.Mappers
                 StringEnumerationMapper.Map(shape["values"] as object[]), Map(shape["inherits"] as object[]));
                 }
             }
+
+            if (shape["raw"] != null)
+                MapSchema(shape);
 
             return new AnyShape(DocumentationMapper.Map(shape["documentation"] as IDictionary<string, object>),
                 XmlSerializerMapper.Map(shape["xmlSerialization"] as IDictionary<string, object>), ExampleMapper.Map(shape["examples"] as object[]),
