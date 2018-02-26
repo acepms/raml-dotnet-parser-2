@@ -22,9 +22,9 @@ namespace ConsoleApp2
         {
             try
             {
-                RunGeneralTests().Wait();
-                RunChinookTests();
-                RunMoviesTests();
+                //RunGeneralTests().Wait();
+                //RunChinookTests();
+                //RunMoviesTests();
                 RunApiWithExamplesTests();
                 Console.WriteLine("Succeeded");
             }

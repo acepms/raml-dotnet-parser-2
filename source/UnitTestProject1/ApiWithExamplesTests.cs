@@ -38,8 +38,14 @@ namespace UnitTestProject1
         [TestMethod]
         public void Get_root_response()
         {
-            var resp = model.EndPoints.First(e => e.Path == "/").Operations.First(o => o.Method == "get").Responses.First();
+            var get = model.EndPoints.First(e => e.Path == "/").Operations.First(o => o.Method == "get");
+            Assert.AreEqual("List API versions", get.Summary);
+            Assert.AreEqual("listVersionsv2", get.Name);
+            var resp = get.Responses.First();
             Assert.AreEqual("200", resp.StatusCode);
+            Assert.AreEqual("200 300 response", resp.Description);
+            Assert.AreEqual(1, resp.Examples.Count());
+            Assert.AreEqual("application/json", resp.Examples.First().Name);
         }
     }
 }
