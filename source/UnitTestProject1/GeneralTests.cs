@@ -9,33 +9,33 @@ namespace UnitTestProject1
     [TestClass]
     public class GeneralTests
     {
-        private RamlParser parser = new RamlParser();
+        private AmfParser parser = new AmfParser();
 
         [TestMethod]
         public async Task Should_detect_RAML_type_from_extension()
         {
-            var type = await RamlParser.DetectType("specs/movies-v1.raml");
+            var type = await AmfParser.DetectType("specs/movies-v1.raml");
             Assert.AreEqual(SpecificationType.RAML, type);
         }
 
         [TestMethod]
         public async Task Should_detect_RAML_type_from_file_contents()
         {
-            var type = await RamlParser.DetectType("specs/movies-v1.yaml");
+            var type = await AmfParser.DetectType("specs/movies-v1.yaml");
             Assert.AreEqual(SpecificationType.RAML, type);
         }
 
         [TestMethod]
         public async Task Should_detect_OAS_type_from_yaml_file()
         {
-            var type = await RamlParser.DetectType("specs/oas/yaml/api-with-examples.yaml");
+            var type = await AmfParser.DetectType("specs/oas/yaml/api-with-examples.yaml");
             Assert.AreEqual(SpecificationType.OAS, type);
         }
 
         [TestMethod]
         public async Task Should_detect_OAS_type_from_json_file()
         {
-            var type = await RamlParser.DetectType("specs/oas/json/api-with-examples.json");
+            var type = await AmfParser.DetectType("specs/oas/json/api-with-examples.json");
             Assert.AreEqual(SpecificationType.OAS, type);
         }
 

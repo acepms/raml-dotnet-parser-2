@@ -81,7 +81,7 @@ namespace ClassLibrary1.Mappers
                 }
             }
 
-            if (shape["raw"] != null)
+            if (shape.ContainsKey("raw") && shape["raw"] != null)
                 MapSchema(shape);
 
             return new AnyShape(DocumentationMapper.Map(shape["documentation"] as IDictionary<string, object>),

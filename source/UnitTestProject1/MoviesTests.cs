@@ -13,7 +13,7 @@ namespace UnitTestProject1
         [TestInitialize]
         public void Initialize()
         {
-            var parser = new RamlParser();
+            var parser = new AmfParser();
             model = parser.Load("./specs/movies-v1.raml").Result;
         }
 

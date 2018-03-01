@@ -20,18 +20,23 @@ namespace ConsoleApp2
             try
             {
                 //RunGeneralTests().Wait();
-                //RunChinookTests();
+                RunChinookTests();
                 //RunMoviesTests();
                 //RunApiWithExamplesTests();
-                RunPestoreJsonTests();
+                //RunPestoreJsonTests();
                 Console.WriteLine("Succeeded");
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Failed");
                 Console.WriteLine(ex.Message);
-                if(ex.InnerException != null)
+                Console.WriteLine(ex.StackTrace);
+                if (ex.InnerException != null)
+                {
                     Console.WriteLine(ex.InnerException.Message);
+                    Console.WriteLine(ex.InnerException.StackTrace);
+                }
+
             }
         }
 
@@ -93,7 +98,7 @@ namespace ConsoleApp2
 
         private async static Task<WebApi> Test()
         {
-            var parser = new RamlParser();
+            var parser = new AmfParser();
             var a = await parser.Load("/desarrollo/mulesoft/raml-dotnet-parser-2/source/Raml.Parser.Tests/Specifications/movies-v1.raml");
 
             return a;

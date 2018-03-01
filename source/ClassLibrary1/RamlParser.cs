@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary1
 {
-    public class RamlParser
+    public class AmfParser
     {
         public async Task<WebApi> Load(string filePath)
         {
@@ -78,7 +78,7 @@ namespace ClassLibrary1
                     parser.parse(input.type, input.file, function(model) { return callback(null, model); });
                 }
             ");
-            var type = Enum.GetName(typeof(SpecificationType), specType);
+            var type = Enum.GetName(typeof(SpecificationType), specType).ToLowerInvariant();
             var input = new { type = type, file = filePath };
             var rawresult = await func(input);
             return rawresult;

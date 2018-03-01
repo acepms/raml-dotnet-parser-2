@@ -30,6 +30,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>key.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EdgeJs, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Edge.js.8.2.1\lib\net40\EdgeJs.dll</HintPath>
@@ -119,12 +125,14 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="edge\x64\edge_nativeclr.node">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="edge\x86\edge_nativeclr.node">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="key.pfx" />
     <None Include="node_modules\amf-client-js\package.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

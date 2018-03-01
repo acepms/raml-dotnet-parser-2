@@ -13,6 +13,8 @@ paths:
         "200":
           description: |-
             200 300 response
+          schema:
+            type: string
           examples:
             application/json: |-
               {
