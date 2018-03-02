@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMF.Parser.TestRunner", "ConsoleApp2\AMF.Parser.TestRunner.csproj", "{E399D2A7-2745-40A0-9FB6-E9C2E3ECCDC9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMF.Parser.TestRunner", "AMF.Parser.TestRunner\AMF.Parser.TestRunner.csproj", "{E399D2A7-2745-40A0-9FB6-E9C2E3ECCDC9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMF.Parser", "ClassLibrary1\AMF.Parser.csproj", "{AF24976E-D021-4AA5-B7D7-1DE6574CD6F6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMF.Parser", "AMF.Parser\AMF.Parser.csproj", "{AF24976E-D021-4AA5-B7D7-1DE6574CD6F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMF.Parser.Tests", "UnitTestProject1\AMF.Parser.Tests.csproj", "{01DE928D-FE41-4826-90CB-CA6FC5A5BF4F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMF.Parser.Tests", "AMF.Parser.Tests\AMF.Parser.Tests.csproj", "{01DE928D-FE41-4826-90CB-CA6FC5A5BF4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSIXProject1", "VSIXProject1\VSIXProject1.csproj", "{C122C92A-7216-4A49-9F67-E07401ED353B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMF.Tools", "AMF.Tools\AMF.Tools.csproj", "{C122C92A-7216-4A49-9F67-E07401ED353B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
