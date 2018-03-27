@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ClassLibrary1.Model
+namespace AMF.Parser.Model
 {
     public class Operation
     {

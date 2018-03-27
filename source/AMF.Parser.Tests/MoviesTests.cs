@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ClassLibrary1;
+using AMF.Parser;
 using System.Linq;
-using ClassLibrary1.Model;
+using AMF.Parser.Model;
 
 namespace UnitTestProject1
 {

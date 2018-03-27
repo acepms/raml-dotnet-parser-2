@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ClassLibrary1.Model
+namespace AMF.Parser.Model
 {
     public class AnyShape : Shape
     {
@@ -8,8 +8,9 @@ namespace ClassLibrary1.Model
         /// AnyShape
         /// </summary>
         public AnyShape(Documentation documentation, XmlSerializer xmlSerialization, IEnumerable<Example> examples,
-            string name, string displayName, string description, string @default, IEnumerable<string> values, IEnumerable<Shape> inherits)
-            : base(name, displayName, description, @default, values, inherits)
+            string name, string displayName, string description, string @default, IEnumerable<string> values, IEnumerable<Shape> inherits,
+            string linkTargetName)
+            : base(name, displayName, description, @default, values, inherits, linkTargetName)
         {
             Documentation = documentation;
             XmlSerialization = xmlSerialization;

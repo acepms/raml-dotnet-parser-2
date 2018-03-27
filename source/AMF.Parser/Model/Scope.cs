@@ -1,4 +1,4 @@
-﻿namespace ClassLibrary1.Model
+﻿namespace AMF.Parser.Model
 {
     public class Scope
     {

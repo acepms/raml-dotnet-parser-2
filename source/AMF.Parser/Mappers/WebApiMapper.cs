@@ -1,12 +1,15 @@
-﻿using ClassLibrary1.Model;
+﻿using AMF.Parser.Model;
 using System.Collections.Generic;
 
-namespace ClassLibrary1.Mappers
+namespace AMF.Parser.Mappers
 {
     class WebApiMapper
     {
-        public WebApi Map(IDictionary<string, object> model)
+        public static WebApi Map(IDictionary<string, object> model)
         {
+            if (model == null)
+                return null;
+
             var name = model["name"] as string;
             var description = model["description"] as string;
             var host = model["host"] as string;

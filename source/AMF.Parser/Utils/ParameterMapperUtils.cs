@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ClassLibrary1.Utils
+namespace AMF.Parser.Utils
 {
     internal class ParameterMapperUtils
     {

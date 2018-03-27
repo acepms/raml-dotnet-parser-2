@@ -1,9 +1,9 @@
-﻿using ClassLibrary1.Model;
+﻿using AMF.Parser.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ClassLibrary1.Mappers
+namespace AMF.Parser.Mappers
 {
     internal class OperationMapper
     {

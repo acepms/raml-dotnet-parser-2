@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ClassLibrary1.Model
+namespace AMF.Parser.Model
 {
     public class UnionShape : AnyShape
     {
@@ -8,8 +8,9 @@ namespace ClassLibrary1.Model
         /// Union
         /// </summary>
         public UnionShape(IEnumerable<Shape> anyOf, Documentation documentation, XmlSerializer xmlSerialization, IEnumerable<Example> examples,
-            string name, string displayName, string description, string @default, IEnumerable<string> values, IEnumerable<Shape> inherits)
-            : base(documentation, xmlSerialization, examples, name, displayName, description, @default, values, inherits)
+            string name, string displayName, string description, string @default, IEnumerable<string> values, IEnumerable<Shape> inherits,
+            string linkTargetName)
+            : base(documentation, xmlSerialization, examples, name, displayName, description, @default, values, inherits, linkTargetName)
         {
             AnyOf = anyOf;
         }

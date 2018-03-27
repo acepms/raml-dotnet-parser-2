@@ -1,5 +1,5 @@
-﻿using ClassLibrary1;
-using ClassLibrary1.Model;
+﻿using AMF.Parser;
+using AMF.Parser.Model;
 using System;
 using System.Threading.Tasks;
 using UnitTestProject1;
@@ -24,20 +24,28 @@ namespace ConsoleApp2
                 RunMoviesTests();
                 RunApiWithExamplesTests();
                 RunPestoreJsonTests();
+                RunArrayTypesTests();
+                RunTypeExpressionsTests();
                 Console.WriteLine("Succeeded");
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Failed");
-                Console.WriteLine(ex.Message);
-                Console.WriteLine(ex.StackTrace);
-                if (ex.InnerException != null)
-                {
-                    Console.WriteLine(ex.InnerException.Message);
-                    Console.WriteLine(ex.InnerException.StackTrace);
-                }
-
+                InformException(ex);
             }
+        }
+
+        private static void RunTypeExpressionsTests()
+        {
+            var tests = new TypeExpressnsTests();
+            tests.Initialize();
+            tests.checks();
+        }
+
+        private static void RunArrayTypesTests()
+        {
+            var tests = new ArrayTypesTests();
+            tests.Initialize();
+            tests.Shapes_count();
         }
 
         private static void RunPestoreJsonTests()
@@ -81,6 +89,9 @@ namespace ConsoleApp2
             tests.Endpoints_should_be_10();
             tests.Get_customers_response();
             tests.Get_albums_response();
+            tests.Shapes_count();
+            tests.Customer_shape();
+            tests.Invoice_shape();
         }
 
         private static void RunMoviesTests()
@@ -102,6 +113,29 @@ namespace ConsoleApp2
             var a = await parser.Load("/desarrollo/mulesoft/raml-dotnet-parser-2/source/Raml.Parser.Tests/Specifications/movies-v1.raml");
 
             return a;
+        }
+
+        private static void InformException(Exception ex)
+        {
+            if (ex.InnerException?.GetType().Name == "AssertionException")
+            {
+                Console.WriteLine(ex.InnerException.Message);
+                Console.WriteLine(ex.InnerException.StackTrace);
+                return;
+            }
+
+            if (ex.InnerException != null)
+            {
+                Console.WriteLine(ex.InnerException.Message);
+                if (string.IsNullOrWhiteSpace(ex.InnerException.StackTrace))
+                    Console.WriteLine(ex.StackTrace);
+                else
+                    Console.WriteLine(ex.InnerException.StackTrace);
+                return;
+            }
+
+            Console.WriteLine(ex.Message);
+            Console.WriteLine(ex.StackTrace);
         }
     }
 }

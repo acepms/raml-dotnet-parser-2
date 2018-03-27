@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ClassLibrary1.Model
+namespace AMF.Parser.Model
 {
     public class NodeShape : AnyShape
     {
@@ -10,8 +10,9 @@ namespace ClassLibrary1.Model
         public NodeShape(int minProperties, int maxProperties, bool closed, string discriminator, string discriminatorValue, bool readOnly,
             IEnumerable<PropertyShape> properties, IEnumerable<PropertyDependency> dependencies, Documentation documentation,
             XmlSerializer xmlSerialization, IEnumerable<Example> examples,
-            string name, string displayName, string description, string @default, IEnumerable<string> values, IEnumerable<Shape> inherits)
-            : base(documentation, xmlSerialization, examples, name, displayName, description, @default, values, inherits)
+            string name, string displayName, string description, string @default, IEnumerable<string> values, IEnumerable<Shape> inherits,
+            string linkTargetName)
+            : base(documentation, xmlSerialization, examples, name, displayName, description, @default, values, inherits, linkTargetName)
         {
             MinProperties = minProperties;
             MaxProperties = maxProperties;

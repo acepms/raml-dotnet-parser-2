@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using ClassLibrary1.Model;
+using AMF.Parser.Model;
 
-namespace ClassLibrary1.Mappers
+namespace AMF.Parser.Mappers
 {
     internal class RequestMapper
     {

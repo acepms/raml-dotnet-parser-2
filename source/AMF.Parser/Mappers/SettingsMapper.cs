@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using ClassLibrary1.Model;
-using ClassLibrary1.Utils;
+using AMF.Parser.Model;
+using AMF.Parser.Utils;
 
-namespace ClassLibrary1.Mappers
+namespace AMF.Parser.Mappers
 {
     internal class SettingsMapper
     {

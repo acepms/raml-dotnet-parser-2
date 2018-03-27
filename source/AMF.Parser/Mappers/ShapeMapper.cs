@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using ClassLibrary1.Model;
+using AMF.Parser.Model;
 using System.Linq;
 using System;
-using ClassLibrary1.Utils;
+using AMF.Parser.Utils;
 
-namespace ClassLibrary1.Mappers
+namespace AMF.Parser.Mappers
 {
     internal class ShapeMapper
     {
@@ -17,7 +17,8 @@ namespace ClassLibrary1.Mappers
                 DocumentationMapper.Map(schema["documentation"] as IDictionary<string, object>), 
                 XmlSerializerMapper.Map(schema["xmlSerialization"] as IDictionary<string, object>), ExampleMapper.Map(schema["examples"] as object[]),
                 schema["name"] as string, schema["displayName"] as string, schema["description"] as string, schema["default"] as string,
-                StringEnumerationMapper.Map(schema["values"] as object[]), Map(schema["inherits"] as object[]));
+                StringEnumerationMapper.Map(schema["values"] as object[]), Map(schema["inherits"] as object[]),
+                GetLinkTargetName(schema));
         }
 
         internal static Shape Map(IDictionary<string, object> shape)
@@ -25,14 +26,16 @@ namespace ClassLibrary1.Mappers
             if (shape == null)
                 return null;
 
-            if(shape["items"] != null) // Array
+            string linkTargetName = GetLinkTargetName(shape);
+
+            if (shape["items"] != null) // Array
             {
                 return new ArrayShape(Map(shape["items"] as IDictionary<string, object>), ParameterMapperUtils.MapInt(shape, "minItems"),
                     ParameterMapperUtils.MapInt(shape, "maxItems"), ParameterMapperUtils.MapBool(shape, "uniqueItems"),
                     DocumentationMapper.Map(shape["documentation"] as IDictionary<string, object>),
                     XmlSerializerMapper.Map(shape["xmlSerialization"] as IDictionary<string, object>), ExampleMapper.Map(shape["examples"] as object[]),
                 shape["name"] as string, shape["displayName"] as string, shape["description"] as string, shape["default"] as string,
-                StringEnumerationMapper.Map(shape["values"] as object[]), Map(shape["inherits"] as object[]));
+                StringEnumerationMapper.Map(shape["values"] as object[]), Map(shape["inherits"] as object[]), linkTargetName);
             }
 
             if ((shape["properties"] as object[]) != null && (shape["properties"] as object[]).Length > 0) // Node
@@ -44,7 +47,7 @@ namespace ClassLibrary1.Mappers
                     DocumentationMapper.Map(shape["documentation"] as IDictionary<string, object>),
                     XmlSerializerMapper.Map(shape["xmlSerialization"] as IDictionary<string, object>), ExampleMapper.Map(shape["examples"] as object[]),
                 shape["name"] as string, shape["displayName"] as string, shape["description"] as string, shape["default"] as string,
-                StringEnumerationMapper.Map(shape["values"] as object[]), Map(shape["inherits"] as object[]));
+                StringEnumerationMapper.Map(shape["values"] as object[]), Map(shape["inherits"] as object[]), linkTargetName);
             }
 
             if (shape["dataType"] != null || shape["fileTypes"] != null) // Scalar or File
@@ -67,7 +70,7 @@ namespace ClassLibrary1.Mappers
                         DocumentationMapper.Map(shape["documentation"] as IDictionary<string, object>),
                         XmlSerializerMapper.Map(shape["xmlSerialization"] as IDictionary<string, object>), ExampleMapper.Map(shape["examples"] as object[]),
                 shape["name"] as string, shape["displayName"] as string, shape["description"] as string, shape["default"] as string,
-                StringEnumerationMapper.Map(shape["values"] as object[]), Map(shape["inherits"] as object[]));
+                StringEnumerationMapper.Map(shape["values"] as object[]), Map(shape["inherits"] as object[]), linkTargetName);
                 }
                 else // File
                 {
@@ -77,7 +80,7 @@ namespace ClassLibrary1.Mappers
                         DocumentationMapper.Map(shape["documentation"] as IDictionary<string, object>),
                         XmlSerializerMapper.Map(shape["xmlSerialization"] as IDictionary<string, object>), ExampleMapper.Map(shape["examples"] as object[]),
                 shape["name"] as string, shape["displayName"] as string, shape["description"] as string, shape["default"] as string,
-                StringEnumerationMapper.Map(shape["values"] as object[]), Map(shape["inherits"] as object[]));
+                StringEnumerationMapper.Map(shape["values"] as object[]), Map(shape["inherits"] as object[]), linkTargetName);
                 }
             }
 
@@ -87,7 +90,14 @@ namespace ClassLibrary1.Mappers
             return new AnyShape(DocumentationMapper.Map(shape["documentation"] as IDictionary<string, object>),
                 XmlSerializerMapper.Map(shape["xmlSerialization"] as IDictionary<string, object>), ExampleMapper.Map(shape["examples"] as object[]),
                 shape["name"] as string, shape["displayName"] as string, shape["description"] as string, shape["default"] as string,
-                StringEnumerationMapper.Map(shape["values"] as object[]), Map(shape["inherits"] as object[]));
+                StringEnumerationMapper.Map(shape["values"] as object[]), Map(shape["inherits"] as object[]), linkTargetName);
+        }
+
+        private static string GetLinkTargetName(IDictionary<string, object> shape)
+        {
+            var linkTarget = shape.ContainsKey("linkTarget") ? shape["linkTarget"] : null;
+            var linkTargetName = ParameterMapperUtils.Map<string>((IDictionary<string, object>)linkTarget, "name");
+            return linkTargetName;
         }
 
         public static IEnumerable<Shape> Map(object[] shapes)

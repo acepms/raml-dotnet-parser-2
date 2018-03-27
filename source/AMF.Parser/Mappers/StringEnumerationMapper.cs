@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
 
-namespace ClassLibrary1.Mappers
+namespace AMF.Parser.Mappers
 {
     internal static class StringEnumerationMapper
     {

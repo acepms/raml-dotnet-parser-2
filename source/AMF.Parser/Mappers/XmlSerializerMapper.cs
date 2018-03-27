@@ -1,8 +1,8 @@
-﻿using ClassLibrary1.Model;
+﻿using AMF.Parser.Model;
 using System;
 using System.Collections.Generic;
 
-namespace ClassLibrary1.Mappers
+namespace AMF.Parser.Mappers
 {
     internal class XmlSerializerMapper
     {

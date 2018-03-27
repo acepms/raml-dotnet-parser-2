@@ -1,12 +1,12 @@
-﻿using ClassLibrary1.Mappers;
-using ClassLibrary1.Model;
+﻿using AMF.Parser.Mappers;
+using AMF.Parser.Model;
 using EdgeJs;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace ClassLibrary1
+namespace AMF.Parser
 {
     public class AmfParser
     {
@@ -63,7 +63,7 @@ namespace ClassLibrary1
             if (error != null)
                 throw new FormatException(error as string);
             var model = ret["model"] as IDictionary<string, object>;
-            var webApi = new WebApiMapper().Map(model);
+            var webApi = WebApiMapper.Map(model);
             var shapes = ShapeMapper.Map(ret["shapes"] as object[]);
             return new AmfModel(webApi, shapes);
         }
